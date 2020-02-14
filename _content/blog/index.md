@@ -2,4 +2,4 @@
 layout: main.njk
 ---
 
-# About
+# Blog home

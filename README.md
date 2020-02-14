@@ -1,15 +1,12 @@
-# 11ty for docs
+# 11ty docs skeleton
 
 This project contains an 11ty skeleton with a few key features that documentation sites commonly need.
 
-
-## Requirements
-
-- Nunjucks. It might be possible to use other templating languages, but it hasn't been tested with them. 
+> **Note:** this project uses Nunjucks templating language. It may be possible to use others, but it hasn't been tested with anything else. Some of the features rely on Nunjucks functionality, such as `include` for content reuse.
 
 ## A tidy directory structure
 
- By default, 11ty expects content to start at the root of the project. I think this can get messy. This skeleton separates content, layouts, and assets like CSS into their own directories, and tells 11ty about the new locations in the `.elevent.js` file (the 11ty config file).
+ By default, 11ty expects content to start at the root of the project. I think this can get messy, especially if you have a lot of content files and directories. This skeleton separates content, layouts, and assets like CSS into their own directories, and tells 11ty about the new locations in the `.elevent.js` file (the 11ty config file).
 
  If you use the skeleton and want to change directory names and structure, make sure you update the `.eleventy.js` as well. 
 
@@ -33,7 +30,7 @@ This is some more content.
 
 [Nunjucks' `include` tag](https://mozilla.github.io/nunjucks/templating.html#include) allows us to pull other files into our content. For example, the above example looks for a file named `myReusableContent.md` in a `_snippets` directory.
 
-We're taking advantage of one of 11ty's unique features: all files are templates. If you've used other static site generators, this can be a strange concept. You may be used to having your content files (in Markdown, AsciiDoc or rST) and then your layout files (using a templating language). Because 11ty treats all files as templates, you can use a templating language directly in your Markdown files.
+We're taking advantage of one of 11ty's unique features: all files are templates. If you've used other static site generators, this can be a strange concept. You may be used to having your content files (in Markdown, AsciiDoc or rST) and then your layout files (using a templating language), and can't mix the two. Because 11ty treats all files as templates, you can use a templating language directly in your Markdown files.
 
 ## Conditional outputs
 
@@ -111,3 +108,23 @@ OUTPUT=draft npx @11ty/eleventy --output=_site/draft
 # PowerShell
 $env:OUTPUT="draft"; npx @11ty/eleventy --output=_site/draft; $env:OUTPUT=$null
 ```
+
+## Navigation
+
+Documentation sites need full control of their navigation and menus.
+
+11ty provides a way to do this, using the [11ty Navigation plugin](https://www.11ty.dev/docs/plugins/navigation/). It's full-featured, supporting breadcrumbs, nesting, and highlighting active menu items. I recommend using it, unless you have a good reason not to. 
+
+Its downside (for me) is that you control your navigation from within each content file. In other words, in the frontmatter of every content file, you have to add a `key` (the name of the menu item), a `parent` if it's nested, and a numerical value for `order`, which determines the order of the pages on the menu. I find this gets confusing fast. When adding a new page, you have to check the output, then work out what number in the order the new page will be and what its parent will be. If you decide to change the order, you have to edit several files. I like having one file that defines the whole menu.
+
+> **If you use the 11ty Navigation plugin:** use large numbers for the order. For example, use `100` for the first page, `200` for the second and so on. This will allow you to add new pages in future without editing the whole menu.
+
+I have set up an alternative using a data file (`_data/nav.js`) which sets out the menu structure and details, and a Nunjucks template (`_layouts/nav.njk`) that consumes it to create a menu. It supports:
+- Infinite nesting (you can have as many navigation levels as you want).
+- Highlighting active menu items.
+- Custom titles (you set the title in the data file, not in the content file).
+
+
+
+
+
