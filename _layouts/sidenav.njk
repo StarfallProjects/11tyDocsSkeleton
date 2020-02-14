@@ -1,0 +1,11 @@
+<nav>
+{% for item in nav %}
+  <li><a href="{{item.url}}">{{ item.title }}</a></li>
+{% else %}
+  <li>This would display if the 'item' collection were empty</li>
+{% endfor %}
+
+</nav>
+
+
+
