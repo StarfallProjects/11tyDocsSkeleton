@@ -1,0 +1,53 @@
+@import url("reset.css");
+
+html, body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    height: 100%;
+    width: 100%;
+}
+
+main {
+    grid-area: main;
+}
+
+.header {
+    border-bottom: 1px solid black;
+    grid-area: header;
+}
+
+.sidenav {
+    border-right: 1px solid black;
+    grid-area: sidenav;
+}
+
+.sidenav li {
+    padding: 1rem;
+}
+
+.sidenav li a {
+    padding: 0.25rem;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 20% 80%;
+    grid-template-areas:
+     "header header "
+     "sidenav main";
+    height: 100%;
+    width: 100%;
+}
+
+.menu-active {
+    background-color: aqua;
+}
+
+.show-sub-menu {
+    display: block;
+}
+
+.hide-sub-menu {
+    display:none;
+}

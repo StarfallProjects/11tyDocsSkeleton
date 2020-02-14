@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+{% include "_layouts/head.njk" %}
+<body>
+<div class="grid-container">
+{% include "_layouts/header.njk" %}
+{% include "_layouts/sidenav.njk" %}
+<main>
+  {{ content | safe }}
+</main>
+</div>
+  </body>
+</html>

@@ -2,6 +2,10 @@
 // Be really careful about the URLs or your bork the highlighting
 module.exports = [
     {
+        url: "/quickstart/", 
+        title:"Quickstart"
+    },
+    {
         url: "/features/", 
         title:"Features",
         children: [
