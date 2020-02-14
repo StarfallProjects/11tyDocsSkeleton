@@ -2,23 +2,29 @@
 // Be really careful about the URLs or your bork the highlighting
 module.exports = [
     {
-        url: "/about/", 
-        title:"About"
-    },
-    {
-        url: "/blog/", 
-        title:"Blog",
+        url: "/features/", 
+        title:"Features",
         children: [
             {
-                url: "/blog/blog1/",
-                title: "Blog1",
-                children: [
-                    {
-                        url: "/blog/subBlog/subBlog1/",
-                        title: "Sub blog 1"
-                    }
-                ]
-            }
+                url: "/features/project-structure/",
+                title: "Project structure",                
+            },
+            {
+                url: "/features/content-reuse/",
+                title: "Content reuse",  
+            },
+            {
+                url: "/features/conditional-output/",
+                title: "Conditional outputs",  
+            },
+            {
+                url: "/features/navigation/",
+                title: "Navigation",  
+            },
         ]
+    },
+    {
+        url: "/about/", 
+        title:"About"
     }
 ]

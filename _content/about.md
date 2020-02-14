@@ -1,5 +1,1 @@
----
-layout: main.njk
----
-
 # About
