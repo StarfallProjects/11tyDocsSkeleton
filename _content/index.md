@@ -1,3 +1,7 @@
+---
+layout: main.njk
+---
+
 # Homepage
 
 {% if environment.output == "draft" %}

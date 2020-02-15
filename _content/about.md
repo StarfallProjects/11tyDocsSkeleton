@@ -1,1 +1,5 @@
+---
+layout: main.njk
+---
+
 # About
