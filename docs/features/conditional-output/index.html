@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+  .my-active-class {
+    background-color:red;
+  }
+    </style>
+  </head>
+<body>
+
+
+
+<ul><li>
+  <a href="/features/" >Features</a><ul><li>
+  <a href="/features/project-structure/" >Project structure</a></li><li>
+  <a href="/features/content-reuse/" >Content reuse</a></li><li>
+  <a href="/features/conditional-output/"  class="my-active-class">Conditional outputs</a></li><li>
+  <a href="/features/navigation/" >Navigation</a></li></ul></li><li>
+  <a href="/about/" >About</a></li></ul>
+
+
+
+
+
+
+
+
+<h2>Conditional outputs</h2>
+<p>Conditional outputs allow you to change how you output your content depending on certain variables. For example, you might want to mark some of your content as <code>draft</code>, and make sure it's only included in test builds, not in builds for the live site.</p>
+<h2>Quickstart</h2>
+<p><code>_data/environment.js</code></p>
+<pre><code class="language-js">module.exports = {
+    'output': process.env.OUTPUT
+};
+</code></pre>
+<p><code>index.md</code></p>
+<pre><code class="language-markdown">
+{% if environment.output == &quot;draft&quot; %}
+Draft text
+{% endif %}
+
+</code></pre>
+<p>Then build the output with:</p>
+<pre><code class="language-bash"># include the draft content
+OUTPUT=draft npx @11ty/eleventy
+
+# exclude the draft content
+npx @11ty/eleventy
+</code></pre>
+<pre><code class="language-powershell"># include the draft content
+$env:OUTPUT=&quot;draft&quot;; npx @11ty/eleventy; $env:OUTPUT=$null
+
+# exclude the draft content
+npx @11ty/eleventy
+</code></pre>
+<h3>Explanation</h3>
+<p>11ty allows us to pass environment variables to our templates using Node.js' <code>process.env</code> property. <a href="https://www.11ty.dev/docs/data-js/#example-exposing-environment-variables">11ty docs example</a>.</p>
+<p>This may sound complicated. What it means is:</p>
+<ul>
+<li>You need a data file listing your environment variables.</li>
+<li>You set those variables in the CLI (command line interface) when you build the site, or in your npm scripts.</li>
+<li>Your templates can check for those variables and take action based on the values.</li>
+</ul>
+<p>In the example above, we:</p>
+<ol>
+<li>Create an environment variable named <code>OUTPUT</code>.</li>
+<li>Check the value of the variable in the <code>index.md</code> file.</li>
+<li>If the value of the variable is <code>draft</code>, we show the draft content.</li>
+<li>Build the site, setting the value of <code>OUTPUT</code> to <code>draft</code>.</li>
+</ol>
+<h4>Why is OUTPUT capitalized?</h4>
+<p>It's a common style convention for environment variables.</p>
+<h4>What's going on with PowerShell?</h4>
+<p>The 11ty documentation shows how to set environment variables in a Bash shell (or CLI). In PowerShell it's more complicated. There is a detailed explanation in <a href="https://stackoverflow.com/a/43030126/2291838">this StackOverflow answer</a>.</p>
+<p>The PowerShell command:</p>
+<ol>
+<li>Sets the environment variable <em>before</em> running the 11ty build.</li>
+<li>Runs the 11ty build.</li>
+<li>Clears the environment variable.</li>
+</ol>
+<p>If you use an npm script (for example, <code>npm run draft</code>) to build your site, I recommend using <a href="https://www.npmjs.com/package/cross-env">cross-env</a> to avoid PowerShell-related quirks. Take a look at this site's <code>package.json</code> for an example.</p>
+<h4>Can I still use flags like <code>--serve</code> or <code>--output</code>?</h4>
+<p>Yes. For example, the following overwrites the default output directory, <code>docs</code>, and puts the output into <code>docs/draft</code>. This allows you to have several output folders. You could have one for live, one for draft, and so on.</p>
+<pre><code># Bash
+OUTPUT=draft npx @11ty/eleventy --output=_site/draft
+
+# PowerShell
+$env:OUTPUT=&quot;draft&quot;; npx @11ty/eleventy --output=_site/draft; $env:OUTPUT=$null
+</code></pre>
+<blockquote>
+<p><strong>Warning:</strong> in PowerShell, if you run it with the <code>--serve</code> flag, it will never run <code>$env:OUTPUT=$null</code>. The <code>$env:OUTPUT</code> variable will keep the value you set until you manually unset it or close PowerShell.</p>
+</blockquote>
+
+
+  </body>
+</html>

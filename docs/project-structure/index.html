@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+  .my-active-class {
+    background-color:red;
+  }
+    </style>
+  </head>
+<body>
+
+
+
+<ul><li>
+  <a href="/" >Home</a><ul><li>
+  <a href="/project-structure/"  class="my-active-class">Project structure</a></li><li>
+  <a href="/content-reuse/" >Content reuse</a></li><li>
+  <a href="/conditional-output/" >Conditional outputs</a></li><li>
+  <a href="/navigation/" >Navigation</a></li></ul></li><li>
+  <a href="/about/" >About</a></li></ul>
+
+
+
+
+
+
+
+
+<h1>A tidy project structure</h1>
+<p>By default, 11ty expects content to start at the root of the project. I think this can get messy, especially if you have a lot of content files and directories. This skeleton separates content, layouts, and assets like CSS into their own directories, and tells 11ty about the new locations in the <code>.elevent.js</code> file (the 11ty config file).</p>
+<p>If you use the skeleton and want to change directory names and structure, make sure you update the <code>.eleventy.js</code> as well.</p>
+<p>You can read more about project structure and <a href="https://www.11ty.dev/docs/config/">11ty configuration</a> in the 11ty docs.</p>
+
+
+  </body>
+</html>

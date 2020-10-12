@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+  .my-active-class {
+    background-color:red;
+  }
+    </style>
+  </head>
+<body>
+
+
+
+<ul><li>
+  <a href="/features/" >Features</a><ul><li>
+  <a href="/features/project-structure/" >Project structure</a></li><li>
+  <a href="/features/content-reuse/"  class="my-active-class">Content reuse</a></li><li>
+  <a href="/features/conditional-output/" >Conditional outputs</a></li><li>
+  <a href="/features/navigation/" >Navigation</a></li></ul></li><li>
+  <a href="/about/" >About</a></li></ul>
+
+
+
+
+
+
+
+
+<h1>Content reuse</h1>
+<p>Content reuse allows you to use the same content (text, image and so on) in multiple places, but maintain it in just one file.</p>
+<h3>Quickstart</h3>
+<p><code>myDocsPage.md</code></p>
+<pre><code class="language-markdown">This is some content
+
+{% include &quot;./_snippets/myReusableContent.md&quot; %}
+
+
+This is some more content.
+</code></pre>
+<h3>Explanation</h3>
+<p><a href="https://mozilla.github.io/nunjucks/templating.html#include">Nunjucks' <code>include</code> tag</a> allows us to pull other files into our content. For example, the above example looks for a file named <code>myReusableContent.md</code> in a <code>_snippets</code> directory.</p>
+<p>We're taking advantage of one of 11ty's unique features: all files are templates. If you've used other static site generators, this can be a strange concept. You may be used to having your content files (in Markdown, AsciiDoc or rST) and then your layout files (using a templating language), and can't mix the two. Because 11ty treats all files as templates, you can use a templating language directly in your Markdown files.</p>
+
+
+  </body>
+</html>
