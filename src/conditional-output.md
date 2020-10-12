@@ -4,15 +4,15 @@ Conditional outputs allow you to change how you output your content depending on
 
 ## Quickstart
 
-`_data/environment.js`
 ```js
+// `_data/environment.js`
 module.exports = {
     'output': process.env.OUTPUT
 };
 ```
 
-`index.md`
-```markdown
+```js
+// `index.md`
 {% raw %}
 {% if environment.output == "draft" %}
 Draft text
@@ -38,7 +38,7 @@ $env:OUTPUT="draft"; npx @11ty/eleventy; $env:OUTPUT=$null
 npx @11ty/eleventy
 ```
 
-### Explanation
+## Explanation
 
 11ty allows us to pass environment variables to our templates using Node.js' `process.env` property. [11ty docs example](https://www.11ty.dev/docs/data-js/#example-exposing-environment-variables).
 
@@ -53,10 +53,10 @@ In the example above, we:
 3. If the value of the variable is `draft`, we show the draft content.
 4. Build the site, setting the value of `OUTPUT` to `draft`.
 
-#### Why is OUTPUT capitalized?
+### Why is OUTPUT capitalized?
 It's a common style convention for environment variables.
 
-#### What's going on with PowerShell?
+### What's going on with PowerShell?
 
 The 11ty documentation shows how to set environment variables in a Bash shell (or CLI). In PowerShell it's more complicated. There is a detailed explanation in [this StackOverflow answer](https://stackoverflow.com/a/43030126/2291838).
 
@@ -67,11 +67,11 @@ The PowerShell command:
 
 If you use an npm script (for example, `npm run draft`) to build your site, I recommend using [cross-env](https://www.npmjs.com/package/cross-env) to avoid PowerShell-related quirks. Take a look at this site's `package.json` for an example.
 
-#### Can I still use flags like `--serve` or `--output`?
+### Can I still use flags like `--serve` or `--output`?
 
 Yes. For example, the following overwrites the default output directory, `docs`, and puts the output into `docs/draft`. This allows you to have several output folders. You could have one for live, one for draft, and so on.
 
-```
+```shell
 # Bash
 OUTPUT=draft npx @11ty/eleventy --output=_site/draft
 

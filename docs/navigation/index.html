@@ -4,31 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <style>
-  .my-active-class {
-    background-color:red;
-  }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/css/a11y-dark.css" />
+    <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
   </head>
 <body>
+<nav>
 
 
-
-<ul><li>
-  <a href="/" >Home</a><ul><li>
-  <a href="/project-structure/" >Project structure</a></li><li>
-  <a href="/content-reuse/" >Content reuse</a></li><li>
-  <a href="/conditional-output/" >Conditional outputs</a></li><li>
-  <a href="/navigation/"  class="my-active-class">Navigation</a></li></ul></li><li>
-  <a href="/about/" >About</a></li></ul>
-
-
-
-
-
-
-
-
+<a href="/"  class="nav-item">Home</a><a href="/project-structure/"  class="nav-item">Project structure</a><a href="/content-reuse/"  class="nav-item">Content reuse</a><a href="/conditional-output/"  class="nav-item">Conditional outputs</a><a href="/navigation/"   class="nav-item-active nav-item" >Navigation</a><a href="/about/"  class="nav-item">About</a>
+</nav>
+<main>
 <h1>Navigation</h1>
 <p>Documentation sites need full control of their navigation and menus.</p>
 <p>11ty provides a way to do this, using the <a href="https://www.11ty.dev/docs/plugins/navigation/">11ty navigation plugin</a>. It's full-featured, supporting breadcrumbs, nesting, and highlighting active menu items. I recommend using it, unless you have a good reason not to.</p>
@@ -43,6 +29,6 @@
 <li>Custom titles (you set the title in the data file, not in the content file).</li>
 </ul>
 
-
+</main>
   </body>
 </html>
