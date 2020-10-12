@@ -14,12 +14,9 @@ module.exports = function(eleventyConfig) {
     // You can return your Config object (optional).
     return {
       dir: {
-        input: "_content",
-        includes:"../_includes",
-        layouts:"../_layouts",
-        data:"../_data"
-
-      },
+        input: "src",
+        output: "docs"
+    },
       markdownTemplateEngine: "njk"
     };
   };

@@ -1,9 +1,13 @@
 {
-  "name": "11tyPlayground",
+  "name": "11tyDocsSkeleton",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm run dev",
+    "dev": "cross-env OUTPUT=draft eleventy --serve",
+    "build": "cross-env OUTPUT=live eleventy",
+    "draft": "cross-env OUTPUT=draft eleventy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -11,6 +15,9 @@
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^0.10.0",
-    "@11ty/eleventy-navigation": "^0.1.4"
+    "@11ty/eleventy-navigation": "^0.1.6"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.2"
   }
 }

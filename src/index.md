@@ -6,6 +6,6 @@ Draft text
 
 {{ environment.output }}
 
-<p> layout is {{ _content.layout }}</p>
+<p> layout is {{ data.data.layout }}</p>
 
 {% include "./_snippets/imasnippet.md" %}

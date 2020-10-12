@@ -11,11 +11,13 @@ module.exports = {
 };
 ```
 
-`_content/index.md`
+`index.md`
 ```markdown
+{% raw %}
 {% if environment.output == "draft" %}
 Draft text
 {% endif %}
+{% endraw %}
 ```
 
 Then build the output with:
@@ -42,7 +44,7 @@ npx @11ty/eleventy
 
 This may sound complicated. What it means is:
 - You need a data file listing your environment variables.
-- You set those variables in the CLI (command line interface) when you build the site.
+- You set those variables in the CLI (command line interface) when you build the site, or in your npm scripts.
 - Your templates can check for those variables and take action based on the values.
 
 In the example above, we:
@@ -62,6 +64,8 @@ The PowerShell command:
 1. Sets the environment variable _before_ running the 11ty build.
 2. Runs the 11ty build.
 3. Clears the environment variable.
+
+If you use an npm script (for example, `npm run draft`) to build your site, I recommend using [cross-env](https://www.npmjs.com/package/cross-env) to avoid PowerShell-related quirks. Take a look at this site's `package.json` for an example.
 
 #### Can I still use flags like `--serve` or `--output`?
 
