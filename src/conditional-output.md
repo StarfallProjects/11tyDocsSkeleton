@@ -69,7 +69,7 @@ If you use an npm script (for example, `npm run draft`) to build your site, I re
 
 #### Can I still use flags like `--serve` or `--output`?
 
-Yes. For example, the following overwrites the default output directory, `_site`, and puts the output into `_site/draft`. This allows you to have several output folders. You could have one for live, one for draft, and so on.
+Yes. For example, the following overwrites the default output directory, `docs`, and puts the output into `docs/draft`. This allows you to have several output folders. You could have one for live, one for draft, and so on.
 
 ```
 # Bash

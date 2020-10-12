@@ -2,7 +2,7 @@
 
 Documentation sites need full control of their navigation and menus.
 
-11ty provides a way to do this, using the [11ty Navigation plugin](https://www.11ty.dev/docs/plugins/navigation/). It's full-featured, supporting breadcrumbs, nesting, and highlighting active menu items. I recommend using it, unless you have a good reason not to. 
+11ty provides a way to do this, using the [11ty navigation plugin](https://www.11ty.dev/docs/plugins/navigation/). It's full-featured, supporting breadcrumbs, nesting, and highlighting active menu items. I recommend using it, unless you have a good reason not to. 
 
 Its downside (for me) is that you control your navigation from within each content file. In other words, in the frontmatter of every content file, you have to add a `key` (the name of the menu item), a `parent` if it's nested, and a numerical value for `order`, which determines the order of the pages on the menu. I find this gets confusing fast. When adding a new page, you have to check the output, then work out what number in the order the new page will be and what its parent will be. If you decide to change the order, you have to edit several files. I like having one file that defines the whole menu.
 

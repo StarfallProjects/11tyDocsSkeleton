@@ -8,7 +8,7 @@ module.exports = function(eleventyConfig) {
         console.log(toLog);
     });
 
-    // shortcodes
+    // Shortcodes
 
   
     // You can return your Config object (optional).
