@@ -1,20 +1,30 @@
 # Content reuse
 
-Content reuse allows you to use the same content (text, image and so on) in multiple places, but maintain it in just one file.
+Content reuse allows you to use the same content in multiple places, but maintain it in just one file.
 
-### Quickstart
+## Quickstart
 
-`myDocsPage.md`
-```markdown
-This is some content
+
+```js
+// `myDocsPage.md`
+This is some content.
 {% raw %}
 {% include "./_snippets/myReusableContent.md" %}
 {% endraw %}
-
 This is some more content.
 ```
 
-### Explanation
+11ty processes the include, meaning you can use Markdown, HTML, and other templating languages, inside the snippet. The above example outputs:
+
+
+This is some content 
+
+{% include "./_snippets/myReusableContent.md" %} 
+
+This is some more content.
+
+
+## Explanation
 
 [Nunjucks' `include` tag](https://mozilla.github.io/nunjucks/templating.html#include) allows us to pull other files into our content. For example, the above example looks for a file named `myReusableContent.md` in a `_snippets` directory.
 
