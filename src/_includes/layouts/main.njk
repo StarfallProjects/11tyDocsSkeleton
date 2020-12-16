@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="/css/prism.css" />
-    <link rel="stylesheet" type="text/css" href="/css/a11y-dark.css" />
-    <link rel="stylesheet" type="text/css" href="/css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="{% if environment.output == "local" %}/{% else %}{{ site.url }}{% endif %}/css/prism.css" />
+    <link rel="stylesheet" type="text/css" href="{% if environment.output == "local" %}/{% else %}{{ site.url }}{% endif %}/css/a11y-dark.css" />
+    <link rel="stylesheet" type="text/css" href="{% if environment.output == "local" %}/{% else %}{{ site.url }}{% endif %}/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="{% if environment.output == "local" %}/{% else %}{{ site.url }}{% endif %}/css/styles.css" />
   </head>
 <body>
 <nav>
@@ -16,6 +16,6 @@
 <main>
 {{ content | safe }}
 </main>
-<script src="/js/prism.js"></script>
+<script src="{% if environment.output == "local" %}/{% else %}{{ site.url }}{% endif %}/js/prism.js"></script>
   </body>
 </html>
