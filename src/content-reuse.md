@@ -1,3 +1,6 @@
+---
+layout: layouts/main.njk
+---
 # Content reuse
 
 Content reuse allows you to use the same content in multiple places, but maintain it in just one file.
