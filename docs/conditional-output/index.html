@@ -4,25 +4,44 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="css/a11y-dark.css" />
-    <link rel="stylesheet" type="text/css" href="css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/css/prism.css" />
+    <link rel="stylesheet" type="text/css" href="/css/a11y-dark.css" />
+    <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
   </head>
 <body>
 <nav>
-
-
-<a href="/"  class="nav-item">Home</a><a href="/project-structure/"  class="nav-item">Project structure</a><a href="/content-reuse/"  class="nav-item">Content reuse</a><a href="/conditional-output/"   class="nav-item-active nav-item" >Conditional outputs</a><a href="/navigation/"  class="nav-item">Navigation</a><a href="/about/"  class="nav-item">About</a>
+<a href="https://starfallprojects.github.io/11tyDocsSkeleton/"  class="nav-item">Home</a><a href="https://starfallprojects.github.io/11tyDocsSkeleton/project-structure/"  class="nav-item">Project structure</a><a href="https://starfallprojects.github.io/11tyDocsSkeleton/content-reuse/"  class="nav-item">Content reuse</a><a href="https://starfallprojects.github.io/11tyDocsSkeleton/conditional-output/"   class="nav-item-active nav-item" >Conditional outputs</a><a href="https://starfallprojects.github.io/11tyDocsSkeleton/navigation/"  class="nav-item">Navigation</a><a href="https://starfallprojects.github.io/11tyDocsSkeleton/about/"  class="nav-item">About</a>
 </nav>
 <main>
 <h2>Conditional outputs</h2>
 <p>Conditional outputs allow you to change how you output your content depending on certain variables. For example, you might want to mark some of your content as <code>draft</code>, and make sure it's only included in test builds, not in builds for the live site.</p>
 <h2>Quickstart</h2>
-<pre class="language-js"><code class="language-js"><span class="token comment">// `_data/environment.js`</span><br>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span><br>    <span class="token string">'output'</span><span class="token operator">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">OUTPUT</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
-<pre class="language-js"><code class="language-js"><span class="token comment">// `index.md`</span><br><br><span class="token punctuation">{</span><span class="token operator">%</span> <span class="token keyword">if</span> environment<span class="token punctuation">.</span>output <span class="token operator">==</span> <span class="token string">"draft"</span> <span class="token operator">%</span><span class="token punctuation">}</span><br>Draft text<br><span class="token punctuation">{</span><span class="token operator">%</span> endif <span class="token operator">%</span><span class="token punctuation">}</span><br></code></pre>
+<pre><code class="language-js">// `_data/environment.js`
+module.exports = {
+    'output': process.env.OUTPUT
+};
+</code></pre>
+<pre><code class="language-js">// `index.md`
+
+{% if environment.output == &quot;draft&quot; %}
+Draft text
+{% endif %}
+
+</code></pre>
 <p>Then build the output with:</p>
-<pre class="language-bash"><code class="language-bash"><span class="token comment"># include the draft content</span><br><span class="token assign-left variable">OUTPUT</span><span class="token operator">=</span>draft npx @11ty/eleventy<br><br><span class="token comment"># exclude the draft content</span><br>npx @11ty/eleventy</code></pre>
-<pre class="language-powershell"><code class="language-powershell"><span class="token comment"># include the draft content</span><br><span class="token variable">$env</span>:OUTPUT=<span class="token string">"draft"</span><span class="token punctuation">;</span> npx @11ty<span class="token operator">/</span>eleventy<span class="token punctuation">;</span> <span class="token variable">$env</span>:OUTPUT=<span class="token variable">$null</span><br><br><span class="token comment"># exclude the draft content</span><br>npx @11ty<span class="token operator">/</span>eleventy</code></pre>
+<pre><code class="language-bash"># include the draft content
+OUTPUT=draft npx @11ty/eleventy
+
+# exclude the draft content
+npx @11ty/eleventy
+</code></pre>
+<pre><code class="language-powershell"># include the draft content
+$env:OUTPUT=&quot;draft&quot;; npx @11ty/eleventy; $env:OUTPUT=$null
+
+# exclude the draft content
+npx @11ty/eleventy
+</code></pre>
 <h2>Explanation</h2>
 <p>11ty allows us to pass environment variables to our templates using Node.js' <code>process.env</code> property. <a href="https://www.11ty.dev/docs/data-js/#example-exposing-environment-variables">11ty docs example</a>.</p>
 <p>This may sound complicated. What it means is:</p>
@@ -51,11 +70,17 @@
 <p>If you use an npm script (for example, <code>npm run draft</code>) to build your site, I recommend using <a href="https://www.npmjs.com/package/cross-env">cross-env</a> to avoid PowerShell-related quirks. Take a look at this site's <code>package.json</code> for an example.</p>
 <h3>Can I still use flags like <code>--serve</code> or <code>--output</code>?</h3>
 <p>Yes. For example, the following overwrites the default output directory, <code>docs</code>, and puts the output into <code>docs/draft</code>. This allows you to have several output folders. You could have one for live, one for draft, and so on.</p>
-<pre class="language-shell"><code class="language-shell"><span class="token comment"># Bash</span><br><span class="token assign-left variable">OUTPUT</span><span class="token operator">=</span>draft npx @11ty/eleventy --output<span class="token operator">=</span>_site/draft<br><br><span class="token comment"># PowerShell</span><br><span class="token variable">$env</span>:OUTPUT<span class="token operator">=</span><span class="token string">"draft"</span><span class="token punctuation">;</span> npx @11ty/eleventy --output<span class="token operator">=</span>_site/draft<span class="token punctuation">;</span> <span class="token variable">$env</span>:OUTPUT<span class="token operator">=</span><span class="token variable">$null</span></code></pre>
+<pre><code class="language-shell"># Bash
+OUTPUT=draft npx @11ty/eleventy --output=_site/draft
+
+# PowerShell
+$env:OUTPUT=&quot;draft&quot;; npx @11ty/eleventy --output=_site/draft; $env:OUTPUT=$null
+</code></pre>
 <blockquote>
 <p><strong>Warning:</strong> in PowerShell, if you run it with the <code>--serve</code> flag, it will never run <code>$env:OUTPUT=$null</code>. The <code>$env:OUTPUT</code> variable will keep the value you set until you manually unset it or close PowerShell.</p>
 </blockquote>
 
 </main>
+<script src="/js/prism.js"></script>
   </body>
 </html>

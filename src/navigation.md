@@ -1,3 +1,6 @@
+---
+layout: layouts/main.njk
+---
 # Navigation
 
 Documentation sites need full control of their navigation and menus.

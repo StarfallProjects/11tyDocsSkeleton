@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run dev",
-    "dev": "cross-env OUTPUT=draft eleventy --serve",
+    "dev": "cross-env OUTPUT=local eleventy --serve",
     "build": "cross-env OUTPUT=live eleventy",
-    "draft": "cross-env OUTPUT=draft eleventy",
+    "draft": "cross-env OUTPUT=local eleventy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,8 +15,7 @@
   "license": "MIT",
   "devDependencies": {
     "@11ty/eleventy": "^0.10.0",
-    "@11ty/eleventy-navigation": "^0.1.6",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.3"
+    "@11ty/eleventy-navigation": "^0.1.6"
   },
   "dependencies": {
     "cross-env": "^7.0.2"
